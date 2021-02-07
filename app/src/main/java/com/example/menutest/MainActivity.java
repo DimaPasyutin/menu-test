@@ -24,7 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
@@ -45,16 +45,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //      Иницилизируем NavigationView и устанавливаем слушатель для взаимодействия с другими активностями
         navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+//        navigationView.setNavigationItemSelectedListener(this);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.icon_navigation)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+//      Отвечает за навигацию и баром, но необходимо изучить как именно
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.icon_timetable, R.layout.activity_navigation)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
 
 //      Отвечает за смахивание содержимого при открывании меню
@@ -85,34 +84,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        Log.i("ItemSelected", "called");
-
-//        switch (id) {
-//            case R.id.icon_navigation:
-//                Intent intentNavigation = new Intent(this, com.example.menutest.Navigation.class);
-//                startActivity(intentNavigation);
-//                drawer.closeDrawer(GravityCompat.START);
-//                break;
-//        }
-
-        if (id == R.id.icon_timetable) {
-            Intent intentNavigation = new Intent(MainActivity.this, com.example.menutest.Navigation.class);
-            startActivity(intentNavigation);
-            Log.i("INTENT", "new intentNavigation");
-        }
-
-        return true;
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     @Override
@@ -123,7 +99,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
-
 
 }
