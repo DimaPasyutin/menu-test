@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+<!--    Отвечает за конетент в меню-->
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/icon_timetable"
@@ -10,11 +12,9 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/icon_navigation"
-            android:icon="@drawable/icon_navigation"
             android:title="@string/menu_gallery" />
         <item
             android:id="@+id/icon_audio"
-            android:icon="@drawable/icon_audio"
             android:title="@string/menu_slideshow" />
     </group>
 </menu>
