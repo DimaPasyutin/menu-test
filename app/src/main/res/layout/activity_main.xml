@@ -22,7 +22,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:background="@drawable/side_nav_bar"
         app:itemIconTint="@color/purple_500"
         app:itemTextColor="@color/purple_500"
         app:headerLayout="@layout/nav_header_main"
