@@ -7,7 +7,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
+import com.example.menutest.adapters.NewsAdapter;
+import com.example.menutest.api.ApiNews;
+import com.example.menutest.api.Apiservice;
+import com.example.menutest.pojo.Item;
+import com.example.menutest.pojo.Response;
+import com.example.menutest.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +30,16 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -39,6 +56,7 @@ public class MainActivity extends AppCompatActivity  {
         // Инициализируем и устанвливаем бар (верхняя монолитная иконка)
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 //      Инициализируем DrawerLayout (улучшеная верся FrameLayout)
         drawer = findViewById(R.id.drawer_layout);
